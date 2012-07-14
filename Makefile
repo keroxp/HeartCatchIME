@@ -1,7 +1,7 @@
 ldandinstall: xcodebuild install
 
 install: 
-		cp -r Build/Products/Debug/IMEKit.app ~/Library/Input\ Methods
+	cp -r Build/Products/Debug/HeartCatchIME.app ~/Library/Input\ Methods
 
 xcodebuild:
 	xcodebuild -target HeartCatchIME -configuration Debug 
