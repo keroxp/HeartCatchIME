@@ -1,0 +1,12 @@
+/* Localized versions of Info.plist keys */
+
+NSHumanReadableCopyright = "© Kaeru Lab, 2012";
+
+/* Include your mode strings here.  See TN2128 for details. */
+
+me.keroxp.inputmethod.HeartCatch = "ハートキャッチ入力";
+
+CFBundleName = "HeartCatchIME";
+CFBundleDisplayName = "HeartCatchIME";
+CFBundleShortVersionString = "HeartCatchIME 0.1";
+CFBundleGetInfoString = "HHeartCatchIME version 0.1, Copyright 2012, Kaeru Lab";

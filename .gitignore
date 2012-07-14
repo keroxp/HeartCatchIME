@@ -1,0 +1,14 @@
+Build/*
+NumberInput/*
+
+/.*
+.*sw*
+!.git*
+
+# xcode プロジェクトファイルすべてを除外
+*.xcodeproj/*
+
+# 必要なファイルをインクルード
+!*.xcodeproj/default.*
+!*.xcodeproj/project.pbxproj
+
