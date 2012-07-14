@@ -1,4 +1,4 @@
-ldandinstall: xcodebuild install
+buildandinstall: xcodebuild install
 
 install: 
 	cp -r Build/Products/Debug/HeartCatchIME.app ~/Library/Input\ Methods
