@@ -15,7 +15,8 @@
 		A66D9A5D15B181A700DA269F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A66D9A5B15B181A700DA269F /* MainMenu.xib */; };
 		A66D9A6415B181C300DA269F /* InputMethodKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A66D9A6315B181C300DA269F /* InputMethodKit.framework */; };
 		A66D9A6715B1820E00DA269F /* HCInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D9A6615B1820E00DA269F /* HCInputController.m */; };
-		A66D9A6D15B183C400DA269F /* icon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A66D9A6C15B183C400DA269F /* icon.tiff */; };
+		A6890C2E15B1CA23003158D2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6890C2D15B1CA23003158D2 /* icon.icns */; };
+		A6890C3115B1CA66003158D2 /* icon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A6890C3015B1CA66003158D2 /* icon.tiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,10 +36,11 @@
 		A66D9A6315B181C300DA269F /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
 		A66D9A6515B1820E00DA269F /* HCInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputController.h; sourceTree = "<group>"; };
 		A66D9A6615B1820E00DA269F /* HCInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputController.m; sourceTree = "<group>"; };
-		A66D9A6C15B183C400DA269F /* icon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = icon.tiff; path = ../icon.tiff; sourceTree = "<group>"; };
 		A66D9A7315B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
 		A66D9A7415B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/MainMenu.xib; sourceTree = "<absolute>"; };
 		A66D9A7515B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/Credits.rtf; sourceTree = "<absolute>"; };
+		A6890C2D15B1CA23003158D2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		A6890C3015B1CA66003158D2 /* icon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = icon.tiff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +109,8 @@
 		A66D9A4D15B181A600DA269F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A66D9A6C15B183C400DA269F /* icon.tiff */,
+				A6890C3015B1CA66003158D2 /* icon.tiff */,
+				A6890C2D15B1CA23003158D2 /* icon.icns */,
 				A66D9A4E15B181A600DA269F /* HeartCatchIME-Info.plist */,
 				A66D9A4F15B181A600DA269F /* InfoPlist.strings */,
 				A66D9A5215B181A600DA269F /* main.m */,
@@ -172,7 +175,8 @@
 				A66D9A5115B181A600DA269F /* InfoPlist.strings in Resources */,
 				A66D9A5715B181A600DA269F /* Credits.rtf in Resources */,
 				A66D9A5D15B181A700DA269F /* MainMenu.xib in Resources */,
-				A66D9A6D15B183C400DA269F /* icon.tiff in Resources */,
+				A6890C2E15B1CA23003158D2 /* icon.icns in Resources */,
+				A6890C3115B1CA66003158D2 /* icon.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
