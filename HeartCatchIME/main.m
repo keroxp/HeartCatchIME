@@ -16,13 +16,17 @@ int main(int argc, char *argv[])
 //    return NSApplicationMain(argc, (const char **)argv);
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
+    // Connection ID と Bundle IDを指定
     NSString *connectionID = @"HeartCatchIME_Connection";
     NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
     
+    // IMKserverを構築
     server = [[IMKServer alloc] initWithName:connectionID bundleIdentifier:bundleID];
     
+    // Nibを明示的に読み込む
     [NSBundle loadNibNamed:@"MainMenu" owner:[NSApplication sharedApplication]];
     
+    // Main Roopへ
     [[NSApplication sharedApplication] run];
     
     [server release];

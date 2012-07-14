@@ -31,10 +31,10 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>LSBackgroundOnly</key>
-	<true/>
+	<string>1</string>
 	<key>InputMethodConnectionName</key>
 	<string>HeartCatchIME_Connection</string>
-	<key>InputMethodServerClass</key>
+	<key>InputMethodServerControllerClass</key>
 	<string>HCInputController</string>
 	<key>tsInputMethodIconFileKey</key>
 	<string>icon.tiff</string>

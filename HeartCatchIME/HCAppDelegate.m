@@ -10,8 +10,6 @@
 
 @implementation HCAppDelegate
 
-@synthesize window = _window;
-
 - (void)dealloc
 {
     [super dealloc];

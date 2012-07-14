@@ -36,6 +36,9 @@
 		A66D9A6515B1820E00DA269F /* HCInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputController.h; sourceTree = "<group>"; };
 		A66D9A6615B1820E00DA269F /* HCInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputController.m; sourceTree = "<group>"; };
 		A66D9A6C15B183C400DA269F /* icon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = icon.tiff; path = ../icon.tiff; sourceTree = "<group>"; };
+		A66D9A7315B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
+		A66D9A7415B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/MainMenu.xib; sourceTree = "<absolute>"; };
+		A66D9A7515B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/Credits.rtf; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A66D9A5015B181A600DA269F /* en */,
+				A66D9A7315B18ACD00DA269F /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -201,6 +205,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A66D9A5615B181A600DA269F /* en */,
+				A66D9A7515B18ACD00DA269F /* ja */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A66D9A5C15B181A700DA269F /* en */,
+				A66D9A7415B18ACD00DA269F /* ja */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
