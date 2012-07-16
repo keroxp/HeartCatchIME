@@ -19,6 +19,7 @@
     NSMutableString *_originalBuffer;
     NSMutableString *_hiraRomaBuffer;
     NSInteger _insertionIndex;
+    NSInteger _candidatesIndex;
     BOOL _didConvert;
     BOOL _didConvertRomaToHira;
     id _currentClient;    

@@ -12,7 +12,8 @@
 
 - (NSString *)convert:(NSString *)string
 {
-    return [NSString stringWithFormat:@"ハートキャッチ %@！",string];
+//    return [NSString stringWithFormat:@"ハートキャッチ %@！",string];
+    return [self convert:string transformStyle:HCTransformStyleLatinHira];
 }
 
 - (NSString *)convert:(NSString *)string transformStyle:(HCTransformStyle)style
@@ -51,7 +52,7 @@
 {
     NSMutableArray *candidates = [NSMutableArray array];
     [candidates addObject:[self convert:string]];
-    for (int i = 0 ; i < 3 ; i++) {
+    for (int i = 0 ; i < 4 ; i++) {
         [candidates addObject:[self convert:string transformStyle:i]];
     }
     return candidates;

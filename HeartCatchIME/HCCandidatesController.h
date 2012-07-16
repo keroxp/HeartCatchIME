@@ -24,4 +24,6 @@ typedef enum{
 - (void)showPanelOnClient:(id)sender;
 - (void)hidePanel;
 
+- (void)selectRowAtIndex:(NSInteger)index;
+
 @end

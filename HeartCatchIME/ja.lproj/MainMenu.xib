@@ -54,7 +54,6 @@
 				<string key="NSClassName">HCCandidatesController</string>
 			</object>
 			<object class="NSWindowTemplate" id="168470608">
-				<int key="NSWindowStyleMask">8208</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 112}, {280, 240}}</string>
 				<int key="NSWTFlags">1685586944</int>
@@ -599,7 +598,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">620</int>
+			<int key="maxID">622</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

@@ -110,7 +110,25 @@ typedef enum{
     NSString *originalText = [self originalBuffer];
     NSString *convertedString = [self composedBuffer];
     
-    if (_didConvert && convertedString && convertedString.length > 0) {
+    // セッション中最初に呼ばれたとき
+    if (!_didConvert && originalText && originalText.length > 0) {
+        // 一意変換処理
+        NSLog(@"First Conversion");
+        convertedString = [[self convertController] convert:originalText];
+        [self setComposedBuffer:convertedString];
+        
+        // トリガはスペースキーならクライアントの文字列を変換
+        if ([triggerKey isEqualToString:@" " ] || [triggerKey isEqualToString:@"　"]) {
+            [sender setMarkedText:convertedString selectionRange:NSMakeRange(_insertionIndex, 0) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+            _didConvert = YES;
+        }else {
+            [self commitComposition:sender];
+            [sender insertText:triggerKey replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+        }
+        return YES;
+    }else if (_didConvert && convertedString && [convertedString length] > 0) {
+    // 2回目以降に呼ばれたとき
+        NSLog(@"Second Conversion");
 //        extern IMKCandidates *candidates;
 //        if (candidates) {
 //            _currentClient = sender;
@@ -122,20 +140,21 @@ typedef enum{
 //            [self setComposedBuffer:@""];
 //            [self setOriginalBuffer:@""];
 //        }
-        NSArray *candidates = [[self convertController] candidates:[self originalBuffer]];
-        [[self candidatesController] setCandidates:candidates];
-        [[self candidatesController] showPanelOnClient:sender];
-        [candidates release];
-    }else if (originalText && originalText.length > 0) {
-        convertedString = [[self convertController] convert:originalText];
-        [self setComposedBuffer:convertedString];
+        _currentClient = sender;
         
-        if ([triggerKey isEqualToString:@" " ] || [triggerKey isEqualToString:@"　"]) {
-            [sender setMarkedText:convertedString selectionRange:NSMakeRange(_insertionIndex, 0) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-            _didConvert = YES;
-        }else {
-            [self commitComposition:sender];
-            [sender insertText:triggerKey replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+        if ([triggerKey isEqualToString:@" "] || [triggerKey isEqualToString:@"　"]) {
+            // 候補パネルを表示
+            if ([[[self candidatesController] panel] isVisible]) {
+                [[self candidatesController] selectRowAtIndex:_candidatesIndex];
+                _candidatesIndex++;
+            }else {
+                NSArray *candidates = [[self convertController] candidates:[self originalBuffer]];
+                [[self candidatesController] setCandidates:candidates];
+                [[self candidatesController] showPanelOnClient:sender];
+                [[self candidatesController] selectRowAtIndex:0];
+                [candidates release];   
+                _candidatesIndex++;
+            }
         }
         return YES;
     }

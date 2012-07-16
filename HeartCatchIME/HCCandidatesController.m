@@ -22,6 +22,7 @@
 {
     [super awakeFromNib];
 //    [_panel setTitle:@"Candidates"];
+    [_panel setFloatingPanel:YES];
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
 }
@@ -30,14 +31,20 @@
 {
     NSRect rect = [sender firstRectForCharacterRange:NSMakeRange(0,0)];
     NSLog(@"origin is : %f , %f , sise is : %f , %f",rect.origin.x, rect.origin.y ,rect.size.width, rect.size.height); 
-    NSPoint point = NSMakePoint(rect.origin.x, rect.origin.y - _panel.frame.size.height  - 15);
+    NSPoint point = NSMakePoint(rect.origin.x, rect.origin.y - _panel.frame.size.height - 23.0f);
     [_panel setFrameOrigin:point];
     [_panel setIsVisible:YES];
+    NSLog(@"showed panel");
 }
 
 - (void)hidePanel
 {
     [_panel setIsVisible:NO];
+}
+
+- (void)selectRowAtIndex:(NSInteger)index
+{
+    [[_tableView rowViewAtRow:0 makeIfNecessary:NO] setSelected:YES];
 }
 
 #pragma mark - TableView
@@ -52,15 +59,17 @@
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
-    NSLog(@"reload table");
+//    NSLog(@"reload table");
     if ([[tableColumn identifier] isEqualToString:kIndexCellID]) {
         return [NSString stringWithFormat:@"%i",row];
     }else if ([[tableColumn identifier] isEqualToString:kCandidateCellID]) {
         return [_candidates objectAtIndex:row];
     }else if ([[tableColumn identifier] isEqualToString:kAnnotationCellID]) {
         return @"あのて";
-    };
-    return nil;
+    }
+    
+    NSLog(@"invalid column id : %@ for table view : %@",[tableColumn identifier], tableView);
+    return @"undefined";
 }
 
 #pragma mark - Candidates

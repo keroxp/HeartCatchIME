@@ -54,7 +54,6 @@
 				<string key="NSClassName">HCCandidatesController</string>
 			</object>
 			<object class="NSWindowTemplate" id="845633771">
-				<int key="NSWindowStyleMask">8208</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 112}, {280, 240}}</string>
 				<int key="NSWTFlags">1685586944</int>
@@ -79,7 +78,6 @@
 											<int key="NSvFlags">256</int>
 											<string key="NSFrameSize">{279, 238}</string>
 											<reference key="NSSuperview" ref="357419475"/>
-											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="912318109"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
@@ -239,7 +237,6 @@
 									</array>
 									<string key="NSFrame">{{1, 1}, {279, 238}}</string>
 									<reference key="NSSuperview" ref="413958389"/>
-									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="1023584767"/>
 									<string key="NSReuseIdentifierKey">_NS:11</string>
 									<reference key="NSDocView" ref="1023584767"/>
@@ -251,7 +248,6 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{141, 17}, {15, 11}}</string>
 									<reference key="NSSuperview" ref="413958389"/>
-									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="431835765"/>
 									<string key="NSReuseIdentifierKey">_NS:58</string>
 									<reference key="NSTarget" ref="413958389"/>
@@ -263,7 +259,6 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{1, 224}, {279, 15}}</string>
 									<reference key="NSSuperview" ref="413958389"/>
-									<reference key="NSWindow"/>
 									<string key="NSReuseIdentifierKey">_NS:60</string>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="413958389"/>
@@ -273,7 +268,6 @@
 							</array>
 							<string key="NSFrameSize">{281, 240}</string>
 							<reference key="NSSuperview" ref="246799238"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="357419475"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
@@ -285,7 +279,6 @@
 					</array>
 					<string key="NSFrameSize">{280, 240}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="413958389"/>
 					<string key="NSReuseIdentifierKey">_NS:21</string>
 				</object>
@@ -591,91 +584,7 @@
 			<nil key="sourceID"/>
 			<int key="maxID">557</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">HCAppDelegate</string>
-					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="candidatesController">HCCandidatesController</string>
-						<string key="convertController">HCConvertController</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="candidatesController">
-							<string key="name">candidatesController</string>
-							<string key="candidateClassName">HCCandidatesController</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="convertController">
-							<string key="name">convertController</string>
-							<string key="candidateClassName">HCConvertController</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HCAppDelegate.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">HCCandidatesController</string>
-					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="panel">NSPanel</string>
-						<string key="scrollView">NSScrollView</string>
-						<string key="tableView">NSTableView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="panel">
-							<string key="name">panel</string>
-							<string key="candidateClassName">NSPanel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="scrollView">
-							<string key="name">scrollView</string>
-							<string key="candidateClassName">NSScrollView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="tableView">
-							<string key="name">tableView</string>
-							<string key="candidateClassName">NSTableView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HCCandidatesController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">HCConvertController</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HCConvertController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">HCInputController</string>
-					<string key="superclassName">IMKInputController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/HCInputController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">IMKInputController</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/IMKInputController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSLayoutConstraint</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/NSLayoutConstraint.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

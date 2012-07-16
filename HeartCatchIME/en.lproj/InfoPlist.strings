@@ -4,7 +4,8 @@ NSHumanReadableCopyright = "© Kaeru Lab, 2012";
 
 /* Include your mode strings here.  See TN2128 for details. */
 
-com.apple.inputmethod.Roman = "Heart Catch IME";
+//com.apple.inputmethod.Roman = "Heart Catch IME";
+com.apple.inputmethod.Japanese = "Heart Catch IME";
 
 CFBundleName = "Heart Catch IME";
 CFBundleDisplayName = "HeartCatchIME";

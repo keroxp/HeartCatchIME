@@ -4,7 +4,8 @@ NSHumanReadableCopyright = "© Kaeru Lab, 2012";
 
 /* Include your mode strings here.  See TN2128 for details. */
 
-com.apple.inputmethod.Roman = "ハートキャッチ入力";
+//com.apple.inputmethod.Roman = "ハートキャッチ入力";
+com.apple.inputmethod.Japanese = "ハートキャッチ入力";
 
 CFBundleName = "ハートキャッチ入力";
 CFBundleDisplayName = "ハートキャッチ入力";
