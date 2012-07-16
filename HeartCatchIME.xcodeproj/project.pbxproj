@@ -17,6 +17,7 @@
 		A66D9A6715B1820E00DA269F /* HCInputController.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D9A6615B1820E00DA269F /* HCInputController.m */; };
 		A6890C2E15B1CA23003158D2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6890C2D15B1CA23003158D2 /* icon.icns */; };
 		A6890C3115B1CA66003158D2 /* icon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A6890C3015B1CA66003158D2 /* icon.tiff */; };
+		A6CA519E15B4420E001B12BD /* HCConvertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CA519D15B4420E001B12BD /* HCConvertController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		A66D9A7515B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/Credits.rtf; sourceTree = "<absolute>"; };
 		A6890C2D15B1CA23003158D2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		A6890C3015B1CA66003158D2 /* icon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = icon.tiff; sourceTree = "<group>"; };
+		A6CA519C15B4420E001B12BD /* HCConvertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCConvertController.h; sourceTree = "<group>"; };
+		A6CA519D15B4420E001B12BD /* HCConvertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCConvertController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				A66D9A5915B181A600DA269F /* HCAppDelegate.m */,
 				A66D9A6515B1820E00DA269F /* HCInputController.h */,
 				A66D9A6615B1820E00DA269F /* HCInputController.m */,
+				A6CA519C15B4420E001B12BD /* HCConvertController.h */,
+				A6CA519D15B4420E001B12BD /* HCConvertController.m */,
 				A66D9A5B15B181A700DA269F /* MainMenu.xib */,
 				A66D9A4D15B181A600DA269F /* Supporting Files */,
 			);
@@ -190,6 +195,7 @@
 				A66D9A5315B181A600DA269F /* main.m in Sources */,
 				A66D9A5A15B181A600DA269F /* HCAppDelegate.m in Sources */,
 				A66D9A6715B1820E00DA269F /* HCInputController.m in Sources */,
+				A6CA519E15B4420E001B12BD /* HCConvertController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
