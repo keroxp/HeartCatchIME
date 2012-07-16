@@ -60,7 +60,6 @@ typedef enum{
     return NO;  
 }
 
-
 #pragma mark - NSResponder
 
 // 改行したら確定
@@ -78,7 +77,7 @@ typedef enum{
     if (_insertionIndex > 0 && _insertionIndex <= originalText.length) {
         _insertionIndex--;
         [originalText deleteCharactersInRange:NSMakeRange(_insertionIndex, 1)];
-        convertedString = [[[NSApp delegate] converController] convert:originalText];
+        convertedString = [[self convertController] convert:originalText]; 
         [self setComposedBuffer:convertedString];
         [sender setMarkedText:convertedString selectionRange:NSMakeRange(_insertionIndex, 0) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
     }
@@ -112,21 +111,23 @@ typedef enum{
     NSString *convertedString = [self composedBuffer];
     
     if (_didConvert && convertedString && convertedString.length > 0) {
-        extern IMKCandidates *candidates;
-        if (candidates) {
-            _currentClient = sender;
+//        extern IMKCandidates *candidates;
+//        if (candidates) {
+//            _currentClient = sender;
 //            [candidates updateCandidates];
 //            [candidates show:kIMKLocateCandidatesBelowHint];
-            [[[NSApp delegate] candidatesController] setCandidates:[self candidates:self]]; 
-            
-        }else {
-            NSString *completeString = [convertedString stringByAppendingString:triggerKey];
-            [sender insertText:completeString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-            [self setComposedBuffer:@""];
-            [self setOriginalBuffer:@""];
-        }
+//        }else {
+//            NSString *completeString = [convertedString stringByAppendingString:triggerKey];
+//            [sender insertText:completeString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+//            [self setComposedBuffer:@""];
+//            [self setOriginalBuffer:@""];
+//        }
+        NSArray *candidates = [[self convertController] candidates:[self originalBuffer]];
+        [[self candidatesController] setCandidates:candidates];
+        [[self candidatesController] showPanelOnClient:sender];
+        [candidates release];
     }else if (originalText && originalText.length > 0) {
-        convertedString = [[[NSApp delegate] convertController] convert:originalText];
+        convertedString = [[self convertController] convert:originalText];
         [self setComposedBuffer:convertedString];
         
         if ([triggerKey isEqualToString:@" " ] || [triggerKey isEqualToString:@"　"]) {
@@ -233,10 +234,10 @@ typedef enum{
     return _convertController;
 }
 
-- (HCCandidatesController*)candiatesController
+- (HCCandidatesController*)candidatesController
 {
     if (_candidatesController == nil) {
-        _candidatesController = (HCCandidatesController*)[[NSApp delegate] candiatesController];
+        _candidatesController = (HCCandidatesController*)[[NSApp delegate] candidatesController];
     }
     return _candidatesController;
 }

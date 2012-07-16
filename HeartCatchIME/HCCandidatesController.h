@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum{
+    HCCandidatePanelLocationAbove = 0,
+    HCCandidatePanelLocationBelow
+}HCCandidatePanelLocation;
+
 @interface HCCandidatesController : NSObject <NSTableViewDelegate, NSTableViewDataSource>
 
 @property (assign) IBOutlet NSPanel *panel;
@@ -15,5 +20,8 @@
 @property (assign) IBOutlet NSTableView *tableView;
 
 @property (nonatomic, retain) NSArray *candidates;
+
+- (void)showPanelOnClient:(id)sender;
+- (void)hidePanel;
 
 @end

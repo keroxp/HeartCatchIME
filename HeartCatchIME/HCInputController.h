@@ -53,8 +53,7 @@
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString;
 
 // コントローラ
-
 - (HCConvertController*)convertController;
-- (HCCandidatesController*)candiatesController;
+- (HCCandidatesController*)candidatesController;
 
 @end
