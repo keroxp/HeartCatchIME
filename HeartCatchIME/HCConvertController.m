@@ -10,32 +10,32 @@
 
 @implementation HCConvertController
 
-+ (NSString *)convert:(NSString *)string
+- (NSString *)convert:(NSString *)string
 {
     return [NSString stringWithFormat:@"ハートキャッチ %@！",string];
 }
 
-+ (NSString *)convert:(NSString *)string transformStyle:(HCTransformStyle)style
+- (NSString *)convert:(NSString *)string transformStyle:(HCTransformStyle)style
 {
     NSMutableString *convertedString = [string mutableCopy];
     if (convertedString) {
         switch (style) {
-            case HITransformStyleFullHalf:
+            case HCTransformStyleFullHalf:
                 if (CFStringTransform((CFMutableStringRef)convertedString, NULL, kCFStringTransformFullwidthHalfwidth, false)) {
                     return [convertedString autorelease];
                 }
                 break;
-            case HITransformStyleLatinHira:
+            case HCTransformStyleLatinHira:
                 if (CFStringTransform((CFMutableStringRef)convertedString, NULL, kCFStringTransformLatinHiragana, false)) {
                     return [convertedString autorelease];
                 }
                 break;
-            case HITransformStyleLatinKana:
+            case HCTransformStyleLatinKana:
                 if (CFStringTransform((CFMutableStringRef)convertedString, NULL, kCFStringTransformLatinKatakana, false)) {
                     return [convertedString autorelease];
                 }
                 break;
-            case HITransformStyleKanaHira:
+            case HCTransformStyleKanaHira:
                 if (CFStringTransform((CFMutableStringRef)convertedString, NULL, kCFStringTransformHiraganaKatakana, false)) {
                     return [convertedString autorelease];
                 }
@@ -45,6 +45,16 @@
         }
     }
     return string;
+}
+
+- (NSArray *)candidates:(NSString *)string
+{
+    NSMutableArray *candidates = [NSMutableArray array];
+    [candidates addObject:[self convert:string]];
+    for (int i = 0 ; i < 3 ; i++) {
+        [candidates addObject:[self convert:string transformStyle:i]];
+    }
+    return candidates;
 }
 
 @end

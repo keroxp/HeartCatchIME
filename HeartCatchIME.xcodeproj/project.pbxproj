@@ -18,9 +18,13 @@
 		A6890C2E15B1CA23003158D2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6890C2D15B1CA23003158D2 /* icon.icns */; };
 		A6890C3115B1CA66003158D2 /* icon.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A6890C3015B1CA66003158D2 /* icon.tiff */; };
 		A6CA519E15B4420E001B12BD /* HCConvertController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CA519D15B4420E001B12BD /* HCConvertController.m */; };
+		A6D5D41915B459F400754C8F /* HCCandidatesController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D5D41815B459F400754C8F /* HCCandidatesController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A6480AAC15B445DD00902D8D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = /Users/keroxp/dev/Cocoa/HeartCatchIME/HeartCatchIME/ja.lproj/Credits.rtf; sourceTree = "<absolute>"; };
+		A6480AAD15B445DD00902D8D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/keroxp/dev/Cocoa/HeartCatchIME/HeartCatchIME/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
+		A6480AAE15B445DD00902D8D /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = /Users/keroxp/dev/Cocoa/HeartCatchIME/HeartCatchIME/ja.lproj/MainMenu.xib; sourceTree = "<absolute>"; };
 		A66D9A4215B181A600DA269F /* HeartCatchIME.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartCatchIME.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A66D9A4615B181A600DA269F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A66D9A4915B181A600DA269F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -37,13 +41,12 @@
 		A66D9A6315B181C300DA269F /* InputMethodKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InputMethodKit.framework; path = System/Library/Frameworks/InputMethodKit.framework; sourceTree = SDKROOT; };
 		A66D9A6515B1820E00DA269F /* HCInputController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputController.h; sourceTree = "<group>"; };
 		A66D9A6615B1820E00DA269F /* HCInputController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputController.m; sourceTree = "<group>"; };
-		A66D9A7315B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/InfoPlist.strings; sourceTree = "<absolute>"; };
-		A66D9A7415B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/MainMenu.xib; sourceTree = "<absolute>"; };
-		A66D9A7515B18ACD00DA269F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ja; path = /Users/keroxp/Development/HeartCatchIME/HeartCatchIME/ja.lproj/Credits.rtf; sourceTree = "<absolute>"; };
 		A6890C2D15B1CA23003158D2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		A6890C3015B1CA66003158D2 /* icon.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = icon.tiff; sourceTree = "<group>"; };
 		A6CA519C15B4420E001B12BD /* HCConvertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCConvertController.h; sourceTree = "<group>"; };
 		A6CA519D15B4420E001B12BD /* HCConvertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCConvertController.m; sourceTree = "<group>"; };
+		A6D5D41715B459F400754C8F /* HCCandidatesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCandidatesController.h; sourceTree = "<group>"; };
+		A6D5D41815B459F400754C8F /* HCCandidatesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCandidatesController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				A66D9A6615B1820E00DA269F /* HCInputController.m */,
 				A6CA519C15B4420E001B12BD /* HCConvertController.h */,
 				A6CA519D15B4420E001B12BD /* HCConvertController.m */,
+				A6D5D41715B459F400754C8F /* HCCandidatesController.h */,
+				A6D5D41815B459F400754C8F /* HCCandidatesController.m */,
 				A66D9A5B15B181A700DA269F /* MainMenu.xib */,
 				A66D9A4D15B181A600DA269F /* Supporting Files */,
 			);
@@ -196,6 +201,7 @@
 				A66D9A5A15B181A600DA269F /* HCAppDelegate.m in Sources */,
 				A66D9A6715B1820E00DA269F /* HCInputController.m in Sources */,
 				A6CA519E15B4420E001B12BD /* HCConvertController.m in Sources */,
+				A6D5D41915B459F400754C8F /* HCCandidatesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +212,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A66D9A5015B181A600DA269F /* en */,
-				A66D9A7315B18ACD00DA269F /* ja */,
+				A6480AAD15B445DD00902D8D /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -215,7 +221,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A66D9A5615B181A600DA269F /* en */,
-				A66D9A7515B18ACD00DA269F /* ja */,
+				A6480AAC15B445DD00902D8D /* ja */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -224,7 +230,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				A66D9A5C15B181A700DA269F /* en */,
-				A66D9A7415B18ACD00DA269F /* ja */,
+				A6480AAE15B445DD00902D8D /* ja */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

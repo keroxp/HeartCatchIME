@@ -9,15 +9,16 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    HITransformStyleFullHalf = 0,
-    HITransformStyleLatinHira,
-    HITransformStyleLatinKana,
-    HITransformStyleKanaHira
+    HCTransformStyleFullHalf = 0,
+    HCTransformStyleLatinHira,
+    HCTransformStyleLatinKana,
+    HCTransformStyleKanaHira
 }HCTransformStyle;
 
 @interface HCConvertController : NSObject
 
-+ (NSString*)convert:(NSString*)string;
-+ (NSString*)convert:(NSString*)string transformStyle:(HCTransformStyle)style;
+- (NSString*)convert:(NSString*)string;
+- (NSString*)convert:(NSString*)string transformStyle:(HCTransformStyle)style;
+- (NSArray*)candidates:(NSString*)string;
 
 @end

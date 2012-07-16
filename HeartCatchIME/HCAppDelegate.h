@@ -7,7 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HCConvertController.h"
+#import "HCCandidatesController.h"
 
 @interface HCAppDelegate : NSObject <NSApplicationDelegate>
+@property (readonly,assign) IBOutlet HCConvertController *convertController;
+@property (readonly,assign) IBOutlet HCCandidatesController *candidatesController;
+
+- (HCConvertController*)convertController;
+- (HCCandidatesController *)candidatesController;
 
 @end

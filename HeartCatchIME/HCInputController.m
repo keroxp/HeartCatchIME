@@ -8,6 +8,18 @@
 
 #import "HCInputController.h"
 
+typedef enum{
+    HCNumberKeyCode1 = 18,
+    HCNumberKeyCode2 = 19,
+    HCNumberKeyCode3 = 20,
+    HCNumberKeyCode4 = 21,
+    HCNumberKeyCode5 = 23,
+    HCNumberKeyCode6 = 22,
+    HCNumberKeyCode7 = 26,
+    HCNumberKeyCode8 = 28,
+    HCNumberKeyCode9 = 25
+}HCNumberKeyCode;
+
 @implementation HCInputController
 
 #pragma mark- IMKServerInput Informal Protocols
@@ -19,8 +31,9 @@
     NSCharacterSet *alphaNumerics = [NSCharacterSet alphanumericCharacterSet];
     NSScanner *scanner = [NSScanner scannerWithString:string];
     BOOL isAlphaNumeric = [scanner scanCharactersFromSet:alphaNumerics intoString:nil];
+    NSLog(@"%@ is AlphaNumeric ? %i",string,isAlphaNumeric);
     if(isAlphaNumeric){
-        [self originalBufferAppend:string client:sender];
+        [self appendToOriginalBuffer:string client:sender];
         return YES;
     }else {
         return [self convert:string client:sender];
@@ -45,6 +58,187 @@
         }
     }
     return NO;  
+}
+
+
+#pragma mark - NSResponder
+
+// 改行したら確定
+- (void)insertNewLine:(id)sender
+{
+    [self commitComposition:sender];
+}
+
+// デリートキーが押された場合、オリジナルバッファから一文字削除してクライアントの文字列を更新
+- (void)deleteBackward:(id)sender
+{
+    NSMutableString *originalText = [self originalBuffer];
+    NSString *convertedString;
+    
+    if (_insertionIndex > 0 && _insertionIndex <= originalText.length) {
+        _insertionIndex--;
+        [originalText deleteCharactersInRange:NSMakeRange(_insertionIndex, 1)];
+        convertedString = [[[NSApp delegate] converController] convert:originalText];
+        [self setComposedBuffer:convertedString];
+        [sender setMarkedText:convertedString selectionRange:NSMakeRange(_insertionIndex, 0) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+    }
+}
+
+-(void)insertTab:(id)sender 
+{
+    // なんかやる
+}
+
+#pragma mark - Others
+
+- (void)awakeFromNib
+{
+    NSLog(@"awake from nib");
+    [super awakeFromNib];
+}
+
+- (void)dealloc
+{
+    [_composedBuffer release];
+    [_originalBuffer release];
+    [super dealloc];
+}
+
+#pragma mark - Conversion
+
+- (BOOL)convert:(NSString*)triggerKey client:(id)sender
+{
+    NSString *originalText = [self originalBuffer];
+    NSString *convertedString = [self composedBuffer];
+    
+    if (_didConvert && convertedString && convertedString.length > 0) {
+        extern IMKCandidates *candidates;
+        if (candidates) {
+            _currentClient = sender;
+//            [candidates updateCandidates];
+//            [candidates show:kIMKLocateCandidatesBelowHint];
+            [[[NSApp delegate] candidatesController] setCandidates:[self candidates:self]]; 
+            
+        }else {
+            NSString *completeString = [convertedString stringByAppendingString:triggerKey];
+            [sender insertText:completeString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+            [self setComposedBuffer:@""];
+            [self setOriginalBuffer:@""];
+        }
+    }else if (originalText && originalText.length > 0) {
+        convertedString = [[[NSApp delegate] convertController] convert:originalText];
+        [self setComposedBuffer:convertedString];
+        
+        if ([triggerKey isEqualToString:@" " ] || [triggerKey isEqualToString:@"　"]) {
+            [sender setMarkedText:convertedString selectionRange:NSMakeRange(_insertionIndex, 0) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+            _didConvert = YES;
+        }else {
+            [self commitComposition:sender];
+            [sender insertText:triggerKey replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+        }
+        return YES;
+    }
+    return NO;
+}
+
+// 入力のプロセスが終わったときに呼ばれる
+- (void)commitComposition:(id)sender
+{
+    NSString *text = [self composedBuffer];
+    
+    if (text == nil || text.length == 0) {
+        text = [self originalBuffer];
+    }
+    
+    [sender insertText:text replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+    [self setComposedBuffer:@""];
+    [self setOriginalBuffer:@""];
+    _insertionIndex = 0;
+    _didConvert = NO;
+}
+
+#pragma mark - Mode
+
+// ユーザが入力メニューから入力モードを変更したときに呼ばれる
+- (void)setValue:(id)value forTag:(long)tag client:(id)sender
+{
+    ;
+}
+
+#pragma mark - Candidates
+
+// 候補のデータソース
+- (NSArray *)candidates:(id)sender
+{
+    NSString *originalString = [self originalBuffer];
+    return [[[NSApp delegate] convertController] candidates:originalString];
+}
+
+// 候補の一つが選択されたときに呼ばれる
+- (void)candidateSelected:(NSAttributedString *)candidateString
+{
+    [self setComposedBuffer:[candidateString string]];
+    [self commitComposition:_currentClient];
+}
+
+// 候補の選択が変化したときに呼ばれる
+- (void)candidateSelectionChanged:(NSAttributedString *)candidateString
+{
+    NSLog(@"Candidates changesd to : %@",candidateString);
+}
+#pragma mark - Buffer
+
+- (NSMutableString *)composedBuffer
+{
+    if ( _composedBuffer == nil) {
+        _composedBuffer = [[NSMutableString alloc] init];
+    }
+    return _composedBuffer;
+}
+
+- (void)setComposedBuffer:(NSString *)composedBuffer
+{
+    [[self composedBuffer] setString:composedBuffer];
+}
+
+- (NSMutableString *)originalBuffer
+{
+    if (_originalBuffer == nil) {
+        _originalBuffer = [[NSMutableString alloc] init];
+    }
+    return  _originalBuffer;
+}
+
+// 現在のバッファに文字を追加
+- (void)appendToOriginalBuffer:(NSString*)string client:(id)sender
+{
+    NSMutableString *buffer = [self originalBuffer];
+    [buffer appendString:string];
+    _insertionIndex++;
+    [sender setMarkedText:buffer selectionRange:NSMakeRange(0, buffer.length) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
+}
+
+- (void)setOriginalBuffer:(NSString *)originalBuffer
+{
+    [[self originalBuffer] setString:originalBuffer];
+}
+
+#pragma mark - Controller
+
+- (HCConvertController *)convertController
+{
+    if (_convertController == nil) {
+        _convertController = (HCConvertController*)[[NSApp delegate] convertController];
+    }
+    return _convertController;
+}
+
+- (HCCandidatesController*)candiatesController
+{
+    if (_candidatesController == nil) {
+        _candidatesController = (HCCandidatesController*)[[NSApp delegate] candiatesController];
+    }
+    return _candidatesController;
 }
 
 // ↑に加えて、キーコード、モディファイアフラグ（Shiftとか）を受け取る
@@ -88,171 +282,5 @@
 //    }
 //    return inputHandled;
 //}
-
-#pragma mark - NSResponder
-
-// 改行したら確定
-- (void)insertNewLine:(id)sender
-{
-    [self commitComposition:sender];
-}
-
-// デリートキーが押された場合、バッファから一文字削除し、デコレイトされた文字を更新
-- (void)deleteBackWord:(id)sender
-{
-    NSMutableString *originalText = [self originalBuffer];
-    NSString *convertedString;
-    
-    if (_insertionIndex > 0 && _insertionIndex <= originalText.length) {
-        _insertionIndex--;
-        [originalText deleteCharactersInRange:NSMakeRange(_insertionIndex, 1)];
-//        convertedString = [HIConvertController convert:originalText];
-        [self setComposedBuffer:convertedString];
-        [sender setMarkedText:convertedString selectionRange:NSMakeRange(_insertionIndex, 0) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-    }
-}
-
-- (void)insertTab:(id)sender
-{
-    // なんかやる
-}
-
-#pragma mark - Others
-
-- (void)awakeFromNib
-{
-    NSLog(@"awake from nib");
-    [super awakeFromNib];
-}
-
-- (void)dealloc
-{
-    [_composedBuffer release];
-    [_originalBuffer release];
-    [super dealloc];
-}
-
-#pragma mark - Conversion
-
-- (BOOL)convert:(NSString*)triggerKey client:(id)sender
-{
-    NSString *originalText = [self originalBuffer];
-    NSString *convertedString = [self composedBuffer];
-    BOOL handled = NO;
-    
-    if (_didConvert && convertedString && convertedString.length > 0) {
-        extern IMKCandidates *candidates;
-        if (candidates) {
-            _currentClient = sender;
-            [candidates updateCandidates];
-            [candidates show:kIMKLocateCandidatesBelowHint];
-        }else {
-            NSString *completeString = [convertedString stringByAppendingString:triggerKey];
-            [sender insertText:completeString replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-            [self setComposedBuffer:@""];
-            [self setOriginalBuffer:@""];
-        }
-    }else if (originalText && originalText.length > 0) {
-//        convertedString = [HIConvertController convert:originalText];
-        [self setComposedBuffer:convertedString];
-        
-        if ([triggerKey isEqual:@" " ] || [triggerKey isEqual:@"　"]) {
-            [sender setMarkedText:convertedString selectedRange:NSMakeRange(_insertionIndex, 0) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-            _didConvert = YES;
-        }else {
-            [self commitComposition:sender];
-            [sender insertText:triggerKey replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-        }
-        handled = YES;
-    }
-    return handled;
-}
-
-// 入力のプロセスが終わったときに呼ばれる
-- (void)commitComposition:(id)sender
-{
-    NSString *text = [self composedBuffer];
-    
-    if (text == nil || text.length == 0) {
-        text = [self originalBuffer];
-    }
-    
-    [sender insertText:text replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-    [self setComposedBuffer:@""];
-    [self setOriginalBuffer:@""];
-    _insertionIndex = 0;
-    _didConvert = NO;
-}
-
-#pragma mark - Mode
-
-// ユーザが入力メニューから入力モードを変更したときに呼ばれる
-- (void)setValue:(id)value forTag:(long)tag client:(id)sender
-{
-    ;
-}
-
-#pragma mark - Candidates
-
-// 候補のデータソース
-- (NSArray *)candidates:(id)sender
-{
-    NSMutableArray *theCandidates = [NSMutableArray array];
-    NSString *originalString = [self originalBuffer];
-    [theCandidates addObject:[HIConvertController convert:originalString]];
-    [theCandidates addObject:@"Hoge"];
-    [theCandidates addObject:@"Fuga"];
-    return theCandidates;
-}
-
-// 候補の一つが選択されたときに呼ばれる
-- (void)candidateSelected:(NSAttributedString *)candidateString
-{
-    [self setComposedBuffer:[candidateString string]];
-    [self commitComposition:_currentClient];
-}
-
-// 候補の選択が変化したときに呼ばれる
-- (void)candidateSelectionChanged:(NSAttributedString *)candidateString
-{
-    NSLog(@"Candidates changesd to : %@",candidateString);
-}
-
-#pragma mark - Buffer
-
-- (NSMutableString *)composedBuffer
-{
-    if ( _composedBuffer == nil) {
-        _composedBuffer = [[NSMutableString alloc] init];
-    }
-    return _composedBuffer;
-}
-
-- (void)setComposedBuffer:(NSString *)composedBuffer
-{
-    [[self composedBuffer] setString:composedBuffer];
-}
-
-- (NSMutableString *)originalBuffer
-{
-    if (_originalBuffer == nil) {
-        _originalBuffer = [[NSMutableString alloc] init];
-    }
-    return  _originalBuffer;
-}
-
-// 現在のバッファに文字を追加
-- (void)originalBufferAppend:(NSString*)string client:(id)sender
-{
-    NSMutableString *buffer = [self originalBuffer];
-    [buffer appendString:string];
-    _insertionIndex++;
-    [sender setMarkedText:buffer selectionRange:NSMakeRange(0, buffer.length) replacementRange:NSMakeRange(NSNotFound, NSNotFound)];
-}
-
-- (void)setOriginalBuffer:(NSString *)originalBuffer
-{
-    [[self originalBuffer] setString:originalBuffer];
-}
 
 @end

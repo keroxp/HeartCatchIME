@@ -9,6 +9,8 @@
 #import "HCAppDelegate.h"
 
 @implementation HCAppDelegate
+@synthesize convertController;
+@synthesize candidatesController;
 
 - (void)dealloc
 {
@@ -18,6 +20,16 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+}
+
+- (HCConvertController *)convertController
+{
+    return convertController;
+}
+
+- (HCCandidatesController *)candidatesController
+{
+    return candidatesController;
 }
 
 @end

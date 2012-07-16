@@ -1,6 +1,8 @@
 buildandinstall: xcodebuild install
 
 install: 
+	killall HeartCatchIME
+	rm -rf ~/Library/Input\ Methods/HeartCatchIME.app
 	cp -r Build/Products/Debug/HeartCatchIME.app ~/Library/Input\ Methods
 
 xcodebuild:

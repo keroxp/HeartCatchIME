@@ -10,6 +10,7 @@
 #import <InputMethodKit/InputMethodKit.h>
 
 IMKServer *server;
+IMKCandidates *candidates;
 
 int main(int argc, char *argv[])
 {
@@ -26,10 +27,13 @@ int main(int argc, char *argv[])
     // Nibを明示的に読み込む
     [NSBundle loadNibNamed:@"MainMenu" owner:[NSApplication sharedApplication]];
     
+    candidates = [[IMKCandidates alloc] initWithServer:server panelType:kIMKSingleColumnScrollingCandidatePanel];
+    
     // Main Roopへ
     [[NSApplication sharedApplication] run];
     
     [server release];
+    [candidates release];
     [pool release];
     return 0;
     

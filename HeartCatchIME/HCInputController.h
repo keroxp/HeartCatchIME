@@ -8,14 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 #import <InputMethodKit/InputMethodKit.h>
+#import "HCConvertController.h"
+#import "HCCandidatesController.h"
 
 @interface HCInputController : IMKInputController
-
 {
+    HCConvertController *_convertController;
+    HCCandidatesController *_candidatesController;
     NSMutableString *_composedBuffer;
     NSMutableString *_originalBuffer;
     NSMutableString *_hiraRomaBuffer;
-    NSInteger *_insertionIndex;
+    NSInteger _insertionIndex;
     BOOL _didConvert;
     BOOL _didConvertRomaToHira;
     id _currentClient;    
@@ -36,17 +39,22 @@
 - (NSMutableString *)composedBuffer;
 - (void)setComposedBuffer:(NSString *)composedBuffer;
 - (NSMutableString *)originalBuffer;
-- (void)appendToOriginalBuffer:(NSString*)string;
+- (void)appendToOriginalBuffer:(NSString*)string client:(id)sender;
 - (void)setOriginalBuffer:(NSString *)originalBuffer;
 
 // NSResponderのアクション
 - (void)insertNewLine:(id)sender;
-- (void)insertNewTab:(id)sender;
+- (void)insertTab:(id)sender;
 - (void)deleteBackward:(id)sender;
 
 // 候補マネジメント
 - (NSArray *)candidates:(id)sender;
 - (void)candidateSelected:(NSAttributedString *)candidateString;
 - (void)candidateSelectionChanged:(NSAttributedString *)candidateString;
+
+// コントローラ
+
+- (HCConvertController*)convertController;
+- (HCCandidatesController*)candiatesController;
 
 @end
